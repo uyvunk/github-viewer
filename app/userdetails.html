@@ -1,0 +1,31 @@
+<div ng-show="user">
+  <div>{{user.name}}</div>
+  <div>{{user.login}}</div>
+  <img ng-src="{{user.avatar_url}}" title="{{user.name}}">
+
+  <select ng-model="filterType">
+    <option value="+name">Ascending name</option>
+    <option value="-name">Descending name</option>
+    <option value="+size">Ascending Size</option>
+    <option value="-size">Descending Size</option>
+  </select>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Size</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="repo in repos | orderBy:filterType">
+        <td>{{repo.id}}</td>
+        <td>{{repo.name}}</td>
+        <td>{{repo.size}}</td>
+        <td>{{repo.description}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
