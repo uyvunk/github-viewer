@@ -1,0 +1,39 @@
+<div>
+  <div ng-hide="contributors">{{error}}</div>
+  <div ng-show="contributors">
+      <div id="userName">{{username}}</div>
+      <div id="repoName">{{reponame}}</div>
+
+      <h2>Contributors</h2>
+      
+    
+      <select ng-model="filterType">
+        <option value="+login">Ascending login</option>
+        <option value="-login">Descending login</option>
+        <option value="+contributions">Ascending contributions</option>
+        <option value="-contributions">Descending contributions</option>
+      </select>
+    
+      <table>
+        <thead>
+          <tr>
+            <th>Login</th>
+            <th>Github link</th>
+            <th>Contributions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="contributor in contributors | orderBy:filterType">
+            <td>
+              <img ng-src="{{contributor.avatar_url}}" title="{{contributor.login}}">
+              <span>{{contributor.login}}</span>
+            </td>
+            <td><a href="{{contributor.html_url}}">Github Page</a></td>
+            <td>{{contributor.contributions}}</td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+  <a href="#!/main">Back to search</a>
+  <a href="#!/user/{{username}}">Back to {{username}}</a>
+</div>

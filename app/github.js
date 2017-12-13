@@ -13,9 +13,17 @@
                             return response.data;
                         });
         };
+
+        var getContributors = function(username,reponame){
+            return $http.get("https://api.github.com/repos/" + username + "/" + reponame + "/contributors")
+                        .then(function(response){
+                            return response.data;
+                        })
+        }
         return {
             getUser: getUser,
-            getRepos: getRepos
+            getRepos: getRepos,
+            getContributors: getContributors
         };
     }
 
