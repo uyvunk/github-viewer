@@ -1,38 +1,56 @@
 <div>
-  <div ng-hide="user">{{error}}</div>
+  <div class="alert alert-danger" ng-hide="user">
+    <strong>Error:</strong> {{error}}
+  </div>
   <div ng-show="user">
-      <div id="userName">{{user.name}}</div>
-      <div>{{user.login}}</div>
-      <img ng-src="{{user.avatar_url}}" title="{{user.name}}">
-    
-      <select ng-model="filterType">
-        <option value="+name">Ascending name</option>
-        <option value="-name">Descending name</option>
-        <option value="+size">Ascending Size</option>
-        <option value="-size">Descending Size</option>
-      </select>
-    
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Size</th>
-            <th>Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="repo in repos | orderBy:filterType">
-            <td>{{repo.id}}</td>
-            <td>
-              <a href="#!/repo/{{user.login}}/{{repo.name}}">{{repo.name}}</a>
-            </td>
-            <td>{{repo.size}}</td>
-            <td>{{repo.description}}</td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="row">
+          <div class="col-sm-4">
+            <img ng-src="{{user.avatar_url}}" title="{{user.name}}" class="img-circle" alt="{{user.name}}" width="100" height="100">
+          </div>
+          <div class="col-sm-6">
+            <p id="userName">User name: {{user.name}}</p>
+            <p>User login: {{user.login}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-sm-6"></div>
+      <div class="col-sm-6">
+        <label for="filter" class="control-label col-sm-4">Order Result By:</label>
+        <div class="col-sm-8">
+          <select id="filter" ng-model="filterType" class="form-control">
+            <option value="+name">Ascending name</option>
+            <option value="-name">Descending name</option>
+            <option value="+size">Ascending Size</option>
+            <option value="-size">Descending Size</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Size</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="repo in repos | orderBy:filterType">
+          <td>{{repo.id}}</td>
+          <td>
+            <a href="#!/repo/{{user.login}}/{{repo.name}}">{{repo.name}}</a>
+          </td>
+          <td>{{repo.size}}</td>
+          <td>{{repo.description}}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
-
-<a href="#!/main">Back to search</a>
+<a href="#!/main" class="btn btn-primary">Back to search</a>

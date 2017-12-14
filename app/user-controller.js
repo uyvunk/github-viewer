@@ -21,7 +21,6 @@
 
     $scope.username = $routeParams.username;
     github.getUser($scope.username).then(onUserComplete, onError);
-
   };
 
   app.controller("UserController", UserController);
